@@ -2,6 +2,10 @@ import { Locale, getTranslations } from "@/lib/translations";
 import Container from "@/components/Container";
 import ContactForm from "@/components/ContactForm";
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function ContactPage({
   params,
 }: {

@@ -2,6 +2,10 @@ import { Locale, getTranslations } from "@/lib/translations";
 import { getHazelnutPrices } from "@/lib/sanity/queries";
 import Container from "@/components/Container";
 
+// Force dynamic rendering to show real-time updates from Sanity
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function PricesPage({
   params,
 }: {

@@ -1,6 +1,10 @@
 import { Locale, getTranslations } from "@/lib/translations";
 import Container from "@/components/Container";
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function AboutPage({
   params,
 }: {

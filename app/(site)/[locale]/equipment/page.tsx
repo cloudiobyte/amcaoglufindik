@@ -4,6 +4,10 @@ import urlFor from "@/lib/sanity/image";
 import Container from "@/components/Container";
 import Image from "next/image";
 
+// Force dynamic rendering to show real-time updates from Sanity
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function EquipmentPage({
   params,
 }: {
