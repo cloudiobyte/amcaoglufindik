@@ -61,10 +61,10 @@ export default async function PricesPage({
                     }`}
                   >
                     <td className="px-8 py-6 whitespace-nowrap text-xl font-bold text-gray-900">
-                      {price.type[locale]}
+                      {price.type[locale as Locale]}
                     </td>
                     <td className="px-8 py-6 whitespace-nowrap text-xl font-semibold text-gray-800">
-                      {price.grade[locale]}
+                      {price.grade[locale as Locale]}
                     </td>
                     <td className="px-8 py-6 whitespace-nowrap">
                       <span className="text-2xl font-bold text-hazel-dark bg-hazel-light px-4 py-2 rounded-lg inline-block">
@@ -72,7 +72,7 @@ export default async function PricesPage({
                       </span>
                     </td>
                     <td className="px-8 py-6 text-xl text-gray-700">
-                      {price.note?.[locale] || "-"}
+                      {price.note?.[locale as Locale] || "-"}
                     </td>
                   </tr>
                 ))}

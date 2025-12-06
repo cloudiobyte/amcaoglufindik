@@ -38,7 +38,7 @@ export default async function EquipmentPage({
                 {item.images && item.images[0] ? (
                   <Image
                     src={urlFor(item.images[0]).width(800).height(600).url()}
-                    alt={item.images[0].alt || item.name[locale]}
+                    alt={item.images[0].alt || item.name[locale as Locale]}
                     fill
                     className="object-cover"
                   />
@@ -61,38 +61,19 @@ export default async function EquipmentPage({
 
               {/* Content */}
               <div className="p-6">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-semibold text-hazel uppercase tracking-wide">
-                    {item.category[locale]}
-                  </span>
-                  {item.featured && (
-                    <span className="px-2 py-1 text-xs bg-hazel-light text-hazel rounded-full">
-                      ⭐
-                    </span>
-                  )}
-                </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  {item.name[locale]}
+                  {item.name[locale as Locale]}
                 </h3>
                 <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-                  {item.description[locale]}
+                  {item.description[locale as Locale]}
                 </p>
-                <div className="flex items-center justify-between">
-                  <div>
-                    {item.price ? (
-                      <p className="text-lg font-bold text-hazel">
-                        {item.price.toLocaleString()} {item.currency}
-                      </p>
-                    ) : (
-                      <p className="text-sm text-gray-500">
-                        {t("equipment.contactForPrice")}
-                      </p>
-                    )}
+                {item.specs && item.specs[locale as Locale] && (
+                  <div className="mt-4 pt-4 border-t border-gray-200">
+                    <p className="text-sm text-gray-600 whitespace-pre-wrap">
+                      {item.specs[locale as Locale]}
+                    </p>
                   </div>
-                  <button className="px-4 py-2 bg-hazel text-white text-sm font-semibold rounded hover:bg-hazel-dark transition-colors">
-                    {t("equipment.viewDetails")}
-                  </button>
-                </div>
+                )}
               </div>
             </div>
           ))}
