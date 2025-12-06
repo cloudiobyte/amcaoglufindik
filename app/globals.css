@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Professional Blue color utilities */
+.text-hazel {
+  color: #1e40af; /* Blue 700 */
+}
+
+.text-hazel-dark {
+  color: #1e3a8a; /* Blue 900 */
+}
+
+.text-hazel-light {
+  color: #dbeafe; /* Blue 100 */
+}
+
+.bg-hazel {
+  background-color: #1e40af; /* Blue 700 */
+}
+
+.bg-hazel-dark {
+  background-color: #1e3a8a; /* Blue 900 */
+}
+
+.bg-hazel-light {
+  background-color: #dbeafe; /* Blue 100 */
+}
+
+.border-hazel {
+  border-color: #1e40af; /* Blue 700 */
+}
+
+.hover\:text-hazel-dark:hover {
+  color: #1e3a8a; /* Blue 900 */
+}
+
+.hover\:bg-hazel-dark:hover {
+  background-color: #1e3a8a; /* Blue 900 */
+}
+
+.hover\:bg-hazel-light:hover {
+  background-color: #dbeafe; /* Blue 100 */
+}
+
+.gradient-hazel {
+  background: linear-gradient(to right, #1e40af, #1e3a8a);
+}
+
+.gradient-hazel-light {
+  background: linear-gradient(to bottom right, #dbeafe, #bfdbfe);
+}
+
+.focus\:ring-hazel:focus {
+  --tw-ring-color: #1e40af;
+}

@@ -1,0 +1,32 @@
+<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="60" height="60" rx="12" fill="#f8fafc"/>
+  
+  <!-- Hazelnut Shell -->
+  <ellipse cx="30" cy="30" rx="18" ry="20" fill="url(#hazelnutGrad)"/>
+  
+  <defs>
+    <linearGradient id="hazelnutGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#A0522D;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6B3410;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4ade80;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#16a34a;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Texture -->
+  <path d="M 18 22 Q 30 25 42 22" stroke="#6B3410" stroke-width="1" fill="none" opacity="0.3"/>
+  <path d="M 18 30 Q 30 33 42 30" stroke="#6B3410" stroke-width="1" fill="none" opacity="0.3"/>
+  <path d="M 18 38 Q 30 41 42 38" stroke="#6B3410" stroke-width="1" fill="none" opacity="0.3"/>
+  
+  <!-- Left Leaf -->
+  <path d="M 16 18 Q 10 14 12 9 Q 16 12 16 18 Z" fill="url(#leafGrad)"/>
+  
+  <!-- Right Leaf -->
+  <path d="M 44 18 Q 50 14 48 9 Q 44 12 44 18 Z" fill="url(#leafGrad)"/>
+  
+  <!-- AF Letters -->
+  <text x="30" y="37" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">AF</text>
+</svg>
