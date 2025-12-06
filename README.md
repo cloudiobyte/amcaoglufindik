@@ -30,8 +30,8 @@
 
 1. **استنساخ المشروع**
 ```bash
-git clone https://github.com/shamflare/amcaoglu.git
-cd amcaoglu
+git clone https://github.com/cloudiobyte/amcaoglufindik.git
+cd amcaoglufindik
 ```
 
 2. **تثبيت الحزم**
@@ -55,162 +55,76 @@ npm run dev
 
 افتح [http://localhost:3000](http://localhost:3000) في المتصفح.
 
-## 🐳 النشر على Hetzner Server باستخدام Docker
+## 🚀 النشر على Vercel (موصى به)
 
-### المتطلبات على السيرفر
-- Docker
-- Docker Compose
-- Git
+### لماذا Vercel؟
+- ✅ مُحسّن لـ Next.js (نفس الشركة)
+- ✅ نشر تلقائي من GitHub
+- ✅ دعم كامل لـ Node 20+
+- ✅ تكامل ممتاز مع Sanity CMS
+- ✅ شبكة CDN عالمية
+- ✅ مجاني 100%
 
 ### خطوات النشر
 
-#### 1. على السيرفر، قم بتثبيت Docker و Docker Compose
+#### 1. إنشاء حساب Vercel
+1. اذهب إلى [vercel.com](https://vercel.com)
+2. سجل الدخول باستخدام حساب GitHub
 
-```bash
-# تحديث النظام
-sudo apt update && sudo apt upgrade -y
+#### 2. إضافة مشروع جديد
+1. اضغط **"Add New Project"**
+2. اختر repository: `cloudiobyte/amcaoglufindik`
+3. اضغط **"Import"**
 
-# تثبيت Docker
-curl -fsSL https://get.docker.com -o get-docker.sh
-sudo sh get-docker.sh
-
-# تثبيت Docker Compose
-sudo apt install docker-compose -y
-
-# إضافة المستخدم لمجموعة docker
-sudo usermod -aG docker $USER
+#### 3. إعدادات المشروع
+```
+Framework Preset: Next.js
+Root Directory: ./ (تلقائي)
+Build Command: npm run build (تلقائي)
+Output Directory: .next (تلقائي)
+Install Command: npm install (تلقائي)
+Node Version: 20.x (تلقائي)
 ```
 
-#### 2. استنساخ المشروع
+#### 4. إضافة Environment Variables
+في قسم "Environment Variables"، أضف:
+- `NEXT_PUBLIC_SANITY_PROJECT_ID` = `your_project_id`
+- `NEXT_PUBLIC_SANITY_DATASET` = `production`
+- `SANITY_API_TOKEN` = `your_token` (إن وجد)
 
-```bash
-git clone https://github.com/shamflare/amcaoglu.git
-cd amcaoglu
-```
+#### 5. النشر
+اضغط **"Deploy"** وانتظر دقيقة واحدة! 🎉
 
-#### 3. إعداد المتغيرات البيئية
+الموقع سيكون متاحاً على: `https://your-project.vercel.app`
 
-أنشئ ملف `.env` في الجذر:
+### ربط الدومين المخصص
 
-```bash
-nano .env
-```
+#### في Vercel:
+1. اذهب إلى **Settings → Domains**
+2. أضف دومينك (مثل: `amcaoglu.com`)
+3. انسخ السجلات المطلوبة
 
-أضف المتغيرات التالية:
-```env
-NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
-NEXT_PUBLIC_SANITY_DATASET=production
-SANITY_API_TOKEN=your_token
-NODE_ENV=production
-PORT=3000
-```
+#### في Cloudflare DNS:
+1. اذهب إلى **DNS Settings**
+2. أضف سجل CNAME:
+   - **Type:** `CNAME`
+   - **Name:** `@` (أو `www`)
+   - **Target:** `cname.vercel-dns.com`
+   - **Proxy status:** DNS only (غير مفعّل)
 
-#### 4. بناء وتشغيل التطبيق
-
-```bash
-# بناء الصورة
-docker-compose build
-
-# تشغيل الحاوية
-docker-compose up -d
-```
-
-#### 5. التحقق من التشغيل
-
-```bash
-# عرض الحاويات العاملة
-docker-compose ps
-
-# عرض السجلات
-docker-compose logs -f
-```
-
-الموقع الآن يعمل على `http://your-server-ip:3000`
-
-### أوامر إضافية مفيدة
-
-```bash
-# إيقاف التطبيق
-docker-compose stop
-
-# إعادة تشغيل التطبيق
-docker-compose restart
-
-# إيقاف وحذف الحاويات
-docker-compose down
-
-# تحديث التطبيق
-git pull
-docker-compose build
-docker-compose up -d
-```
-
-## 🔧 إعداد Nginx Reverse Proxy (اختياري ولكن موصى به)
-
-لربط الموقع بدومين واستخدام HTTPS:
-
-```bash
-# تثبيت Nginx
-sudo apt install nginx -y
-
-# إنشاء ملف إعداد الموقع
-sudo nano /etc/nginx/sites-available/amcaoglu
-```
-
-أضف الإعدادات التالية:
-
-```nginx
-server {
-    listen 80;
-    server_name yourdomain.com www.yourdomain.com;
-
-    location / {
-        proxy_pass http://localhost:3000;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
-        proxy_set_header Host $host;
-        proxy_cache_bypass $http_upgrade;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
-}
-```
-
-```bash
-# تفعيل الإعداد
-sudo ln -s /etc/nginx/sites-available/amcaoglu /etc/nginx/sites-enabled/
-
-# اختبار الإعداد
-sudo nginx -t
-
-# إعادة تشغيل Nginx
-sudo systemctl restart nginx
-```
-
-### تثبيت SSL Certificate (Let's Encrypt)
-
-```bash
-# تثبيت Certbot
-sudo apt install certbot python3-certbot-nginx -y
-
-# الحصول على شهادة SSL
-sudo certbot --nginx -d yourdomain.com -d www.yourdomain.com
-
-# تجديد تلقائي للشهادة
-sudo certbot renew --dry-run
-```
+### التحديثات التلقائية
+كل `git push` إلى `main` سينشئ نشر جديد تلقائياً! ✨
 
 ## 📝 إدارة المحتوى عبر Sanity Studio
 
 للوصول إلى لوحة Sanity Admin:
 
+**على Vercel:**
 ```
 https://yourdomain.com/admin
 ```
 
-أو محلياً:
+**محلياً:**
 ```
 http://localhost:3000/admin
 ```
@@ -218,21 +132,33 @@ http://localhost:3000/admin
 ## 📂 هيكل المشروع
 
 ```
-amcaoglu/
+amcaoglufindik/
 ├── app/                    # Next.js App Router
 │   ├── (site)/            # صفحات الموقع العامة
+│   │   ├── [locale]/      # صفحات متعددة اللغات
+│   │   │   ├── about/     # صفحة من نحن
+│   │   │   ├── contact/   # صفحة اتصل بنا
+│   │   │   ├── equipment/ # صفحة المعدات
+│   │   │   └── prices/    # صفحة الأسعار
 │   ├── admin/             # Sanity Studio
 │   └── globals.css        # الأنماط العامة
-├── components/            # مكونات React القابلة لإعادة الاستخدام
+├── components/            # مكونات React
+│   ├── ContactForm.tsx
+│   ├── Footer.tsx
+│   ├── Hero.tsx
+│   ├── LanguageSwitcher.tsx
+│   └── Navbar.tsx
 ├── lib/                   # دوال مساعدة
-│   ├── translations.ts   # نظام الترجمة
+│   ├── translations.ts    # نظام الترجمة
 │   └── sanity/           # إعدادات Sanity
-├── public/               # ملفات ثابتة
+│       ├── client.ts
+│       ├── image.ts
+│       └── queries.ts
 ├── sanity/               # Schemas لـ Sanity
-├── Dockerfile           # إعداد Docker
-├── docker-compose.yml   # إعداد Docker Compose
-└── .dockerignore       # ملفات مستثناة من Docker
-
+│   └── schemaTypes/
+├── public/               # ملفات ثابتة
+├── vercel.json          # إعدادات Vercel
+└── package.json         # التبعيات والسكريبتات
 ```
 
 ## 🛠️ السكريبتات المتاحة
@@ -242,12 +168,20 @@ npm run dev          # تشغيل الموقع في وضع التطوير
 npm run build        # بناء الموقع للإنتاج
 npm run start        # تشغيل الموقع المبني
 npm run lint         # فحص الكود
+npm run sanity:deploy # نشر Sanity Studio
 ```
+
+## 🌐 اللغات المدعومة
+
+- 🇹🇷 التركية (tr)
+- 🇬🇧 الإنجليزية (en)
+
+يتم تبديل اللغة تلقائياً عبر URL: `/tr` أو `/en`
 
 ## 📧 الدعم
 
 للأسئلة والدعم، يرجى التواصل عبر:
-- GitHub Issues: [shamflare/amcaoglu](https://github.com/shamflare/amcaoglu/issues)
+- GitHub Issues: [cloudiobyte/amcaoglufindik](https://github.com/cloudiobyte/amcaoglufindik/issues)
 
 ## 📄 الترخيص
 
@@ -255,4 +189,4 @@ npm run lint         # فحص الكود
 
 ---
 
-صنع بـ ❤️ بواسطة Shamflare
+صنع بـ ❤️ للنشر على Vercel
