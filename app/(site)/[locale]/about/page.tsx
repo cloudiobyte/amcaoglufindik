@@ -1,5 +1,7 @@
 import { Locale, getTranslations } from "@/lib/translations";
 import Container from "@/components/Container";
+import { getSiteSettings } from "@/lib/sanity/queries";
+import { urlFor } from "@/lib/sanity/image";
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic';
@@ -12,11 +14,29 @@ export default async function AboutPage({
 }) {
   const { locale } = await params;
   const t = getTranslations(locale as Locale);
+  const siteSettings = await getSiteSettings();
+
+  const backgroundImage = siteSettings?.aboutPageBackground 
+    ? urlFor(siteSettings.aboutPageBackground).width(1920).quality(90).url()
+    : null;
 
   return (
-    <div>
+    <div className="min-h-screen relative">
+      {/* الخلفية - صورة أو لون افتراضي */}
+      {backgroundImage ? (
+        <div 
+          className="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('${backgroundImage}')`,
+            filter: "brightness(1.1)"
+          }}
+        />
+      ) : (
+        <div className="fixed inset-0 -z-10 bg-gradient-to-br from-sky-200 via-blue-100 to-cyan-200" />
+      )}
+
       {/* Page Header */}
-      <div className="bg-hazel-light py-12">
+      <div className="backdrop-blur-md bg-white/50 py-12">
         <Container>
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
             {t("about.title")}
@@ -27,7 +47,7 @@ export default async function AboutPage({
 
       <Container>
         {/* Story Section */}
-        <div className="mb-12">
+        <div className="mb-12 backdrop-blur-md bg-white/70 p-8 rounded-2xl shadow-xl">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
             {t("about.story")}
           </h2>
@@ -37,7 +57,7 @@ export default async function AboutPage({
         </div>
 
         {/* Mission Section */}
-        <div className="mb-12 bg-hazel-light p-8 rounded-lg">
+        <div className="mb-12 backdrop-blur-md bg-white/70 p-8 rounded-2xl shadow-xl">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
             {t("about.mission")}
           </h2>
@@ -47,13 +67,13 @@ export default async function AboutPage({
         </div>
 
         {/* Values Section */}
-        <div>
+        <div className="backdrop-blur-md bg-white/70 p-8 rounded-2xl shadow-xl">
           <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
             {t("about.values")}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Value 1: Quality */}
-            <div className="bg-white p-6 rounded-lg shadow-md text-center">
+            <div className="bg-white/50 p-6 rounded-lg shadow-md text-center hover:bg-white/70 transition-all">
               <div className="w-16 h-16 bg-hazel-light rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
                   className="w-8 h-8 text-hazel"
@@ -76,7 +96,7 @@ export default async function AboutPage({
             </div>
 
             {/* Value 2: Trust */}
-            <div className="bg-white p-6 rounded-lg shadow-md text-center">
+            <div className="bg-white/50 p-6 rounded-lg shadow-md text-center hover:bg-white/70 transition-all">
               <div className="w-16 h-16 bg-hazel-light rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
                   className="w-8 h-8 text-hazel"
@@ -99,7 +119,7 @@ export default async function AboutPage({
             </div>
 
             {/* Value 3: Experience */}
-            <div className="bg-white p-6 rounded-lg shadow-md text-center">
+            <div className="bg-white/50 p-6 rounded-lg shadow-md text-center hover:bg-white/70 transition-all">
               <div className="w-16 h-16 bg-hazel-light rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
                   className="w-8 h-8 text-hazel"

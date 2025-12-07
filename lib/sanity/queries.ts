@@ -100,4 +100,82 @@ export async function getEquipment(
 	return await client.fetch<SanityEquipment[]>(query);
 }
 
+// Site Settings from Sanity
+export interface SanitySiteSettings {
+	_id: string;
+	favicon?: {
+		asset: {
+			_ref: string;
+			_type: string;
+		};
+	};
+	siteTitle: string;
+	logo?: {
+		asset: {
+			_ref: string;
+			_type: string;
+		};
+	};
+	mainTitle: string;
+	mainSubtitle: string;
+	descriptionMetadata: string;
+	mainPageBackground?: {
+		asset: {
+			_ref: string;
+			_type: string;
+		};
+	};
+	aboutPageBackground?: {
+		asset: {
+			_ref: string;
+			_type: string;
+		};
+	};
+	pricesPageBackground?: {
+		asset: {
+			_ref: string;
+			_type: string;
+		};
+	};
+	equipmentPageBackground?: {
+		asset: {
+			_ref: string;
+			_type: string;
+		};
+	};
+	contactPageBackground?: {
+		asset: {
+			_ref: string;
+			_type: string;
+		};
+	};
+	socialMediaLinks?: {
+		facebook?: string;
+		instagram?: string;
+		youtube?: string;
+		tiktok?: string;
+		whatsapp?: string;
+		twitter?: string;
+		linkedin?: string;
+	};
+}
 
+export async function getSiteSettings(): Promise<SanitySiteSettings | null> {
+	const query = `*[_type == "siteSettings"][0] {
+	  _id,
+	  favicon,
+	  siteTitle,
+	  logo,
+	  mainTitle,
+	  mainSubtitle,
+	  descriptionMetadata,
+	  mainPageBackground,
+	  aboutPageBackground,
+	  pricesPageBackground,
+	  equipmentPageBackground,
+	  contactPageBackground,
+	  socialMediaLinks
+	}`;
+
+	return await client.fetch<SanitySiteSettings | null>(query);
+}

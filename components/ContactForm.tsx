@@ -24,7 +24,7 @@ export default function ContactForm({ locale }: { locale: Locale }) {
   };
 
   return (
-    <div>
+    <div className="backdrop-blur-md bg-white/70 p-8 rounded-2xl shadow-xl">
       <h2 className="text-2xl font-bold text-gray-900 mb-6">
         {t("contact.formTitle")}
       </h2>

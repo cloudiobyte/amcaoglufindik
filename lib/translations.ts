@@ -31,7 +31,7 @@ const translations: Record<Locale, Translations> = {
 
     // Prices page
     "prices.title": "Güncel Fındık Fiyatları",
-    "prices.subtitle": "Fındık çeşitlerine göre güncel piyasa fiyatları",
+    "prices.subtitle": "Fındık Güncel Piyasa Fiyatları",
     "prices.lastUpdated": "Son güncelleme",
     "prices.variety": "Fındık Çeşidi",
     "prices.pricePerKg": "Fiyat (TL/kg)",

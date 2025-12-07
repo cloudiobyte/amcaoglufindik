@@ -1,6 +1,8 @@
 import { Locale, getTranslations } from "@/lib/translations";
 import Container from "@/components/Container";
 import ContactForm from "@/components/ContactForm";
+import { getSiteSettings } from "@/lib/sanity/queries";
+import { urlFor } from "@/lib/sanity/image";
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic';
@@ -13,10 +15,28 @@ export default async function ContactPage({
 }) {
   const { locale } = await params;
   const t = getTranslations(locale as Locale);
+  const siteSettings = await getSiteSettings();
+
+  const backgroundImage = siteSettings?.contactPageBackground 
+    ? urlFor(siteSettings.contactPageBackground).width(1920).quality(90).url()
+    : null;
 
   return (
-    <div>
-      <div className="bg-hazel-light py-12">
+    <div className="min-h-screen relative">
+      {/* الخلفية - صورة أو لون افتراضي */}
+      {backgroundImage ? (
+        <div 
+          className="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('${backgroundImage}')`,
+            filter: "brightness(1.1)"
+          }}
+        />
+      ) : (
+        <div className="fixed inset-0 -z-10 bg-gradient-to-br from-sky-200 via-blue-100 to-cyan-200" />
+      )}
+
+      <div className="backdrop-blur-md bg-white/50 py-12">
         <Container>
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
             {t("contact.title")}
@@ -27,7 +47,7 @@ export default async function ContactPage({
 
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div>
+          <div className="backdrop-blur-md bg-white/70 p-8 rounded-2xl shadow-xl">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
               {t("contact.info")}
             </h2>

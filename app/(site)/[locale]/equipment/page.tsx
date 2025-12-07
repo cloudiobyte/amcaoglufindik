@@ -1,6 +1,7 @@
 import { Locale, getTranslations } from "@/lib/translations";
-import { getEquipment } from "@/lib/sanity/queries";
+import { getEquipment, getSiteSettings } from "@/lib/sanity/queries";
 import urlFor from "@/lib/sanity/image";
+import { urlFor as urlForImage } from "@/lib/sanity/image";
 import Container from "@/components/Container";
 import Image from "next/image";
 
@@ -16,11 +17,29 @@ export default async function EquipmentPage({
   const { locale } = await params;
   const t = getTranslations(locale as Locale);
   const equipmentList = await getEquipment(locale as Locale);
+  const siteSettings = await getSiteSettings();
+
+  const backgroundImage = siteSettings?.equipmentPageBackground 
+    ? urlForImage(siteSettings.equipmentPageBackground).width(1920).quality(90).url()
+    : null;
 
   return (
-    <div>
+    <div className="min-h-screen relative">
+      {/* الخلفية - صورة أو لون افتراضي */}
+      {backgroundImage ? (
+        <div 
+          className="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('${backgroundImage}')`,
+            filter: "brightness(1.1)"
+          }}
+        />
+      ) : (
+        <div className="fixed inset-0 -z-10 bg-gradient-to-br from-sky-200 via-blue-100 to-cyan-200" />
+      )}
+
       {/* Page Header */}
-      <div className="bg-hazel-light py-12">
+      <div className="backdrop-blur-md bg-white/50 py-12">
         <Container>
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
             {t("equipment.title")}
@@ -35,7 +54,7 @@ export default async function EquipmentPage({
           {equipmentList.map((item) => (
             <div
               key={item._id}
-              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow"
+              className="backdrop-blur-md bg-white/80 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all"
             >
               {/* Image */}
               <div className="h-48 gradient-hazel-light flex items-center justify-center relative">
