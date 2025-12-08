@@ -2,6 +2,10 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Locale } from "@/lib/translations";
 
+// Force dynamic rendering to show real-time updates
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function LocaleLayout({
   children,
   params,

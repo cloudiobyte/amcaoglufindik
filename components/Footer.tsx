@@ -11,8 +11,11 @@ export default async function Footer({ locale }: FooterProps) {
   const contactInfoList = await getContactInfo();
   const siteSettings = await getSiteSettings();
   
-  const merkez = contactInfoList.find(c => c.location === 'merkez');
-  const sube = contactInfoList.find(c => c.location === 'sube');
+  const merkez = contactInfoList.find(c => c.location.toLowerCase() === 'merkez');
+  const sube = contactInfoList.find(c => 
+    c.location.toLowerCase() === 'sube' || 
+    c.location.toLowerCase() === 'şube'
+  );
 
   return (
     <footer className="bg-gray-900 text-gray-300">
