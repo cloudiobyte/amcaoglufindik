@@ -179,3 +179,27 @@ export async function getSiteSettings(): Promise<SanitySiteSettings | null> {
 
 	return await client.fetch<SanitySiteSettings | null>(query);
 }
+
+// Present Price from Sanity
+export interface SanityPresentPrice {
+	_id: string;
+	productDescription: string;
+	brutPrice: number;
+	netPrice: number;
+	updatedAt: string;
+	isActive: boolean;
+}
+
+export async function getPresentPrice(): Promise<SanityPresentPrice | null> {
+	const query = `*[_type == "presentPrice" && isActive == true] | order(_updatedAt desc)[0] {
+	  _id,
+	  productDescription,
+	  brutPrice,
+	  netPrice,
+	  "updatedAt": coalesce(updatedAt, _updatedAt),
+	  isActive
+	}`;
+
+	return await client.fetch<SanityPresentPrice | null>(query);
+}
+

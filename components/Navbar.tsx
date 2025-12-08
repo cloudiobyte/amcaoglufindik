@@ -66,7 +66,7 @@ export default function Navbar({ locale }: NavbarProps) {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-8">
             {links.map((link) => {
               const isActive = pathname === link.href;
               return (
@@ -87,7 +87,7 @@ export default function Navbar({ locale }: NavbarProps) {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center">
+          <div className="lg:hidden flex items-center">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="text-gray-700 hover:text-hazel focus:outline-none"
@@ -113,7 +113,7 @@ export default function Navbar({ locale }: NavbarProps) {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="md:hidden pb-4">
+          <div className="lg:hidden pb-4">
             <div className="flex flex-col space-y-3">
               {links.map((link) => {
                 const isActive = pathname === link.href;
