@@ -6,6 +6,7 @@ import equipment from "./equipment";
 import hazelnutPrice from "./hazelnutPrice";
 import aboutPage from "./aboutPage";
 import presentPrice from "./presentPrice";
+import secondHandEquipment from "./secondHandEquipment";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -13,6 +14,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     presentPrice,
     hazelnutPrice,
     equipment,
+    secondHandEquipment,
     contactInfo,
     aboutPage,
   ] as SchemaTypeDefinition[],

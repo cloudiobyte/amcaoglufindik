@@ -65,36 +65,23 @@ export async function getContactInfo(): Promise<SanityContactInfo[]> {
 // Equipment from Sanity
 export interface SanityEquipment {
 	_id: string;
-	name: Record<Locale, string>;
-	description: Record<Locale, string>;
-	images?: Array<{
+	productName: string;
+	productDescription: string;
+	productImage?: {
 		asset: {
 			_ref: string;
 			_type: string;
 		};
 		alt?: string;
-	}>;
-	specs?: Record<Locale, string>;
+	};
 }
 
-export async function getEquipment(
-	_locale: Locale = "tr",
-): Promise<SanityEquipment[]> {
+export async function getEquipment(): Promise<SanityEquipment[]> {
 	const query = `*[_type == "equipment"] | order(_createdAt desc) {
 	  _id,
-	  "name": {
-	    "tr": coalesce(nameTr, nameEn, ""),
-	    "en": coalesce(nameEn, nameTr, "")
-	  },
-	  "description": {
-	    "tr": coalesce(descriptionTr, descriptionEn, ""),
-	    "en": coalesce(descriptionEn, descriptionTr, "")
-	  },
-	  images,
-	  "specs": {
-	    "tr": specsTr,
-	    "en": specsEn
-	  }
+	  productName,
+	  productDescription,
+	  productImage
 	}`;
 
 	return await client.fetch<SanityEquipment[]>(query);
@@ -201,5 +188,30 @@ export async function getPresentPrice(): Promise<SanityPresentPrice | null> {
 	}`;
 
 	return await client.fetch<SanityPresentPrice | null>(query);
+}
+
+// Second Hand Equipment from Sanity
+export interface SanitySecondHandEquipment {
+	_id: string;
+	productName: string;
+	productDescription: string;
+	productImage?: {
+		asset: {
+			_ref: string;
+			_type: string;
+		};
+		alt?: string;
+	};
+}
+
+export async function getSecondHandEquipment(): Promise<SanitySecondHandEquipment[]> {
+	const query = `*[_type == "secondHandEquipment"] | order(_createdAt desc) {
+	  _id,
+	  productName,
+	  productDescription,
+	  productImage
+	}`;
+
+	return await client.fetch<SanitySecondHandEquipment[]>(query);
 }
 

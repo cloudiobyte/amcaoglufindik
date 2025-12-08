@@ -2,69 +2,45 @@ import { defineType, defineField } from "sanity";
 
 export default defineType({
   name: "equipment",
-  title: "Makineler / Equipment",
+  title: "Tarım Makineleri / Agricultural Equipment",
   type: "document",
   fields: [
     defineField({
-      name: "nameTr",
-      title: "Name (Turkish)",
+      name: "productImage",
+      title: "Ürün Görseli / Product Image",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "productName",
+      title: "Ürün Adı / Product Name",
       type: "string",
-      validation: (rule) => rule.required(),
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "nameEn",
-      title: "Name (English)",
-      type: "string",
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: "descriptionTr",
-      title: "Description (Turkish)",
+      name: "productDescription",
+      title: "Ürün Açıklaması / Product Description",
       type: "text",
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: "descriptionEn",
-      title: "Description (English)",
-      type: "text",
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: "images",
-      title: "Images",
-      type: "array",
-      of: [
-        {
-          type: "image",
-          options: {
-            hotspot: true,
-          },
-          fields: [
-            {
-              name: "alt",
-              title: "Alt Text",
-              type: "string",
-            },
-          ],
-        },
-      ],
-    }),
-    defineField({
-      name: "specsTr",
-      title: "Specifications (Turkish)",
-      type: "text",
-    }),
-    defineField({
-      name: "specsEn",
-      title: "Specifications (English)",
-      type: "text",
+      rows: 4,
+      validation: (Rule) => Rule.required(),
     }),
   ],
   preview: {
     select: {
-      title: "nameTr",
-      subtitle: "nameEn",
-      media: "images.0",
+      title: "productName",
+      media: "productImage",
+      description: "productDescription",
+    },
+    prepare(selection) {
+      const { title, media, description } = selection;
+      return {
+        title: title,
+        subtitle: description ? description.substring(0, 50) + '...' : '',
+        media: media,
+      };
     },
   },
 });

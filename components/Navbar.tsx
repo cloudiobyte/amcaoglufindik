@@ -27,6 +27,7 @@ export default function Navbar({ locale }: NavbarProps) {
     { href: `/${locale}`, label: t("nav.home") },
     { href: `/${locale}/prices`, label: t("nav.prices") },
     { href: `/${locale}/equipment`, label: t("nav.equipment") },
+    { href: `/${locale}/second-hand-equipment`, label: t("nav.secondHandEquipment") },
     { href: `/${locale}/contact`, label: t("nav.contact") },
     { href: `/${locale}/about`, label: t("nav.about") },
   ];

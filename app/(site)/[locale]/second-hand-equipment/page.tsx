@@ -1,17 +1,17 @@
 import { Locale, getTranslations } from "@/lib/translations";
 import Container from "@/components/Container";
-import { getEquipment } from "@/lib/sanity/queries";
+import { getSecondHandEquipment } from "@/lib/sanity/queries";
 import { urlFor } from "@/lib/sanity/image";
 import Image from "next/image";
 
-export default async function EquipmentPage({
+export default async function SecondHandEquipmentPage({
   params,
 }: {
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
   const t = getTranslations(locale as Locale);
-  const equipment = await getEquipment();
+  const equipment = await getSecondHandEquipment();
 
   return (
     <div className="min-h-screen py-16 bg-gradient-to-br from-slate-50 to-gray-100">
@@ -19,10 +19,10 @@ export default async function EquipmentPage({
         {/* Page Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            {t("equipment.title")}
+            {t("secondHandEquipment.title")}
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            {t("equipment.subtitle")}
+            {t("secondHandEquipment.subtitle")}
           </p>
         </div>
 
@@ -61,7 +61,7 @@ export default async function EquipmentPage({
         ) : (
           <div className="text-center py-16">
             <p className="text-xl text-gray-500">
-              {t("equipment.noProducts")}
+              {t("secondHandEquipment.noProducts")}
             </p>
           </div>
         )}

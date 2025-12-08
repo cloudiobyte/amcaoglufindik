@@ -2,7 +2,8 @@ import { Locale, getTranslations } from "@/lib/translations";
 import Hero from "@/components/Hero";
 import Container from "@/components/Container";
 import HazelLink from "@/components/HazelLink";
-import { getSiteSettings } from "@/lib/sanity/queries";
+import PresentPriceBanner from "@/components/PresentPriceBanner";
+import { getSiteSettings, getPresentPrice } from "@/lib/sanity/queries";
 import { urlFor } from "@/lib/sanity/image";
 
 export default async function Home({
@@ -13,6 +14,7 @@ export default async function Home({
   const { locale } = await params;
   const t = getTranslations(locale as Locale);
   const siteSettings = await getSiteSettings();
+  const presentPrice = await getPresentPrice();
 
   // Image from Sanity or default / Sanity'den resim veya varsayılan
   const backgroundImage = siteSettings?.mainPageBackground 
@@ -34,6 +36,16 @@ export default async function Home({
         <div className="fixed inset-0 -z-10 bg-gradient-to-br from-sky-200 via-blue-100 to-cyan-200" />
       )}
       
+      {/* Present Price Banner - Only on Homepage */}
+      {presentPrice && (
+        <PresentPriceBanner
+          productDescription={presentPrice.productDescription}
+          brutPrice={presentPrice.brutPrice}
+          netPrice={presentPrice.netPrice}
+          updatedAt={presentPrice.updatedAt}
+        />
+      )}
+
       {/* Hero Section */}
       <Hero
         title={t("home.heroTitle")}

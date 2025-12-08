@@ -13,7 +13,8 @@ const translations: Record<Locale, Translations> = {
     // Navigation
     "nav.home": "Ana Sayfa",
     "nav.prices": "Fındık Fiyatları",
-    "nav.equipment": "Makineler",
+    "nav.equipment": "Tarım Makineleri",
+    "nav.secondHandEquipment": "İkinci El Makineler",
     "nav.contact": "İletişim",
     "nav.about": "Hakkımızda",
 
@@ -50,9 +51,10 @@ const translations: Record<Locale, Translations> = {
     "prices.domestic": "Yerli tüketim",
 
     // Equipment page
-    "equipment.title": "Tarım Makineleri ve Ekipmanları",
+    "equipment.title": "Tarım Makineleri",
     "equipment.subtitle": "Fındık üretimi için profesyonel makineler",
     "equipment.viewDetails": "Detayları Görüntüle",
+    "equipment.noProducts": "Şu anda stokta makine bulunmamaktadır.",
     "equipment.price": "Fiyat",
     "equipment.contactForPrice": "Fiyat için iletişime geçin",
     
@@ -69,6 +71,11 @@ const translations: Record<Locale, Translations> = {
     "equipment.roasterDesc": "Endüstriyel kavurma sistemi, sıcaklık kontrolü",
     "equipment.packaging": "Paketleme Makinesi",
     "equipment.packagingDesc": "Otomatik vakumlama ve paketleme sistemi",
+
+    // Second Hand Equipment page
+    "secondHandEquipment.title": "İkinci El Makineler",
+    "secondHandEquipment.subtitle": "Güvenilir ikinci el tarım makineleri",
+    "secondHandEquipment.noProducts": "Şu anda stokta ikinci el makine bulunmamaktadır.",
 
     // Contact page
     "contact.title": "İletişim",
@@ -121,7 +128,8 @@ const translations: Record<Locale, Translations> = {
     // Navigation
     "nav.home": "Home",
     "nav.prices": "Hazelnut Prices",
-    "nav.equipment": "Equipment",
+    "nav.equipment": "Agricultural Equipment",
+    "nav.secondHandEquipment": "Second Hand Equipment",
     "nav.contact": "Contact",
     "nav.about": "About",
 
@@ -158,9 +166,10 @@ const translations: Record<Locale, Translations> = {
     "prices.domestic": "Domestic consumption",
 
     // Equipment page
-    "equipment.title": "Agricultural Machinery and Equipment",
+    "equipment.title": "Agricultural Equipment",
     "equipment.subtitle": "Professional machinery for hazelnut production",
     "equipment.viewDetails": "View Details",
+    "equipment.noProducts": "No equipment currently in stock.",
     "equipment.price": "Price",
     "equipment.contactForPrice": "Contact for price",
     
@@ -173,11 +182,16 @@ const translations: Record<Locale, Translations> = {
     "equipment.crackerDesc": "Precision adjustable cracking system",
     "equipment.sorter": "Hazelnut Sorter",
     "equipment.sorterDesc": "Automatic size and quality sorting system",
-    "equipment.roaster": "Hazelnut Roaster",
     "equipment.roasterDesc": "Industrial roasting system with temperature control",
     "equipment.packaging": "Packaging Machine",
     "equipment.packagingDesc": "Automatic vacuum sealing and packaging system",
 
+    // Second Hand Equipment page
+    "secondHandEquipment.title": "Second Hand Equipment",
+    "secondHandEquipment.subtitle": "Reliable second hand agricultural machinery",
+    "secondHandEquipment.noProducts": "No second hand equipment currently in stock.",
+
+    // Contact page
     // Contact page
     "contact.title": "Contact",
     "contact.subtitle": "Get in touch with us for any questions",
