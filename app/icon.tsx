@@ -9,9 +9,9 @@ export default async function Icon() {
   try {
     const siteSettings = await getSiteSettings();
     
-    // إذا كان هناك favicon من Sanity
+    // If there is a favicon from Sanity / Sanity'den favicon varsa
     if (siteSettings?.favicon) {
-      // نستخدم fit: 'crop' ليملأ المساحة بالكامل
+      // Use fit: 'crop' to fill the space completely / Alanı tamamen doldurmak için fit: 'crop' kullanıyoruz
       const faviconUrl = urlFor(siteSettings.favicon)
         .width(48)
         .height(48)
@@ -37,6 +37,6 @@ export default async function Icon() {
     console.error('Error loading favicon:', error);
   }
   
-  // fallback: رجوع بسيط إذا فشل
+  // Fallback: Simple fallback if it fails / Başarısız olursa basit yedek
   return new Response(null, { status: 404 });
 }

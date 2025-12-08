@@ -8,7 +8,7 @@ export async function GET() {
     const siteSettings = await getSiteSettings();
     
     if (siteSettings?.favicon) {
-      // استخدام crop ليملأ المساحة
+      // Use crop to fill the space / Alanı doldurmak için crop kullanıyoruz
       const imageUrl = urlFor(siteSettings.favicon)
         .width(64)
         .height(64)
@@ -17,7 +17,7 @@ export async function GET() {
         .format('png')
         .url();
       
-      // نرجع SVG wrapper حول الصورة لزيادة الوضوح
+      // Return SVG wrapper around image for clarity / Netlik için resim etrafında SVG wrapper dönüyoruz
       const svg = `<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><image href="${imageUrl}" width="64" height="64" /></svg>`;
       
       return new Response(svg, {

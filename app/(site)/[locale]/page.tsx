@@ -14,14 +14,14 @@ export default async function Home({
   const t = getTranslations(locale as Locale);
   const siteSettings = await getSiteSettings();
 
-  // الصورة من Sanity أو صورة افتراضية
+  // Image from Sanity or default / Sanity'den resim veya varsayılan
   const backgroundImage = siteSettings?.mainPageBackground 
     ? urlFor(siteSettings.mainPageBackground).width(1920).quality(90).url()
     : "https://images.unsplash.com/photo-1464226184884-fa280b87c399?q=80&w=2070&auto=format&fit=crop";
 
   return (
     <div className="min-h-screen relative">
-      {/* الخلفية - صورة أو لون افتراضي */}
+      {/* Background - image or default color / Arka plan - resim veya varsayılan renk */}
       {backgroundImage ? (
         <div 
           className="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat"

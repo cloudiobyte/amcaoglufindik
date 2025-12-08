@@ -2,174 +2,174 @@ import { defineType, defineField } from "sanity";
 
 export default defineType({
   name: "siteSettings",
-  title: "إعدادات الموقع / Site Settings",
+  title: "Site Ayarları / Site Settings",
   type: "document",
   fields: [
-    // Favicon - أيقونة المتصفح
+    // Favicon - Browser Icon
     defineField({
       name: "favicon",
-      title: "Favicon - أيقونة المتصفح",
+      title: "Favicon - Tarayıcı İkonu",
       type: "image",
-      description: "الأيقونة التي تظهر في تاب المتصفح (يفضل 32x32px أو 64x64px)",
+      description: "Tarayıcı sekmesinde görünen ikon (32x32px veya 64x64px önerilir) / Icon that appears in browser tab (32x32px or 64x64px recommended)",
       options: {
         hotspot: true,
       },
       validation: (rule) => rule.required(),
     }),
 
-    // Site Title - عنوان الموقع في التاب
+    // Site Title
     defineField({
       name: "siteTitle",
-      title: "Site Title - عنوان الموقع",
+      title: "Site Başlığı / Site Title",
       type: "string",
-      description: "العنوان الذي يظهر في تاب المتصفح",
+      description: "Tarayıcı sekmesinde görünen başlık / Title that appears in browser tab",
       placeholder: "Amcaoğlu - Fındık Fiyatları & Tarımsal Makineler",
       validation: (rule) => rule.required().max(60),
     }),
 
-    // Logo - شعار الشركة
+    // Logo
     defineField({
       name: "logo",
-      title: "Logo - شعار الشركة",
+      title: "Logo - Şirket Logosu",
       type: "image",
-      description: "شعار الشركة الذي يظهر في الـ Navbar",
+      description: "Navbar'da görünen şirket logosu / Company logo that appears in Navbar",
       options: {
         hotspot: true,
       },
       validation: (rule) => rule.required(),
     }),
 
-    // Main Title - العنوان الرئيسي
+    // Main Title
     defineField({
       name: "mainTitle",
-      title: "Main Title - العنوان الرئيسي",
+      title: "Ana Başlık / Main Title",
       type: "string",
-      description: "اسم الشركة الرئيسي (Amcaoğlu)",
+      description: "Ana şirket adı (Amcaoğlu) / Main company name (Amcaoğlu)",
       placeholder: "Amcaoğlu",
       validation: (rule) => rule.required(),
     }),
 
-    // Main Subtitle - العنوان الفرعي
+    // Main Subtitle
     defineField({
       name: "mainSubtitle",
-      title: "Main Subtitle - العنوان الفرعي",
+      title: "Alt Başlık / Main Subtitle",
       type: "string",
-      description: "النص الفرعي تحت اسم الشركة",
+      description: "Şirket adının altındaki metin / Text under the company name",
       placeholder: "Fındık & Makineler",
       validation: (rule) => rule.required(),
     }),
 
-    // Description Metadata - وصف الموقع للـ SEO
+    // Description Metadata
     defineField({
       name: "descriptionMetadata",
-      title: "Description Metadata - وصف الموقع (SEO)",
+      title: "Açıklama Meta Verisi / Description Metadata (SEO)",
       type: "text",
-      description: "وصف الموقع للظهور في محركات البحث (150-160 حرف)",
+      description: "Arama motorlarında görünecek site açıklaması (150-160 karakter) / Site description for search engines (150-160 characters)",
       rows: 3,
       validation: (rule) => rule.required().max(160),
     }),
 
-    // Main Page Background - خلفية الصفحة الرئيسية
+    // Main Page Background
     defineField({
       name: "mainPageBackground",
-      title: "Main Page Background - خلفية الصفحة الرئيسية",
+      title: "Ana Sayfa Arka Planı / Main Page Background",
       type: "image",
-      description: "صورة خلفية الصفحة الرئيسية (اختياري - الحجم الموصى به: 1920x1080px)",
+      description: "Ana sayfa arka plan resmi (opsiyonel - önerilen boyut: 1920x1080px) / Main page background image (optional - recommended size: 1920x1080px)",
       options: {
         hotspot: true,
       },
     }),
 
-    // About Page Background - خلفية صفحة من نحن
+    // About Page Background
     defineField({
       name: "aboutPageBackground",
-      title: "About Page Background - خلفية صفحة من نحن",
+      title: "Hakkımızda Sayfası Arka Planı / About Page Background",
       type: "image",
-      description: "صورة خلفية صفحة من نحن (اختياري - الحجم الموصى به: 1920x1080px)",
+      description: "Hakkımızda sayfası arka plan resmi (opsiyonel - önerilen boyut: 1920x1080px) / About page background image (optional - recommended size: 1920x1080px)",
       options: {
         hotspot: true,
       },
     }),
 
-    // Prices Page Background - خلفية صفحة الأسعار
+    // Prices Page Background
     defineField({
       name: "pricesPageBackground",
-      title: "Prices Page Background - خلفية صفحة الأسعار",
+      title: "Fiyatlar Sayfası Arka Planı / Prices Page Background",
       type: "image",
-      description: "صورة خلفية صفحة الأسعار (اختياري - الحجم الموصى به: 1920x1080px)",
+      description: "Fiyatlar sayfası arka plan resmi (opsiyonel - önerilen boyut: 1920x1080px) / Prices page background image (optional - recommended size: 1920x1080px)",
       options: {
         hotspot: true,
       },
     }),
 
-    // Equipment Page Background - خلفية صفحة المعدات
+    // Equipment Page Background
     defineField({
       name: "equipmentPageBackground",
-      title: "Equipment Page Background - خلفية صفحة المعدات",
+      title: "Makineler Sayfası Arka Planı / Equipment Page Background",
       type: "image",
-      description: "صورة خلفية صفحة المعدات (اختياري - الحجم الموصى به: 1920x1080px)",
+      description: "Makineler sayfası arka plan resmi (opsiyonel - önerilen boyut: 1920x1080px) / Equipment page background image (optional - recommended size: 1920x1080px)",
       options: {
         hotspot: true,
       },
     }),
 
-    // Contact Page Background - خلفية صفحة التواصل
+    // Contact Page Background
     defineField({
       name: "contactPageBackground",
-      title: "Contact Page Background - خلفية صفحة التواصل",
+      title: "İletişim Sayfası Arka Planı / Contact Page Background",
       type: "image",
-      description: "صورة خلفية صفحة التواصل (اختياري - الحجم الموصى به: 1920x1080px)",
+      description: "İletişim sayfası arka plan resmi (opsiyonel - önerilen boyut: 1920x1080px) / Contact page background image (optional - recommended size: 1920x1080px)",
       options: {
         hotspot: true,
       },
     }),
 
-    // Social Media Links - روابط التواصل الاجتماعي
+    // Social Media Links
     defineField({
       name: "socialMediaLinks",
-      title: "Social Media Links - روابط التواصل الاجتماعي",
+      title: "Sosyal Medya Bağlantıları / Social Media Links",
       type: "object",
       fields: [
         defineField({
           name: "facebook",
-          title: "Facebook - فيسبوك",
+          title: "Facebook",
           type: "url",
           placeholder: "https://facebook.com/your-page",
         }),
         defineField({
           name: "instagram",
-          title: "Instagram - إنستغرام",
+          title: "Instagram",
           type: "url",
           placeholder: "https://instagram.com/your-account",
         }),
         defineField({
           name: "youtube",
-          title: "YouTube - يوتيوب",
+          title: "YouTube",
           type: "url",
           placeholder: "https://youtube.com/@your-channel",
         }),
         defineField({
           name: "tiktok",
-          title: "TikTok - تيك توك",
+          title: "TikTok",
           type: "url",
           placeholder: "https://tiktok.com/@your-account",
         }),
         defineField({
           name: "whatsapp",
-          title: "WhatsApp - واتساب",
+          title: "WhatsApp",
           type: "string",
-          description: "رقم الواتساب أو رابط الواتساب",
+          description: "WhatsApp numarası veya linki / WhatsApp number or link",
           placeholder: "+90 555 123 4567",
         }),
         defineField({
           name: "twitter",
-          title: "Twitter/X - تويتر",
+          title: "Twitter/X",
           type: "url",
           placeholder: "https://twitter.com/your-account",
         }),
         defineField({
           name: "linkedin",
-          title: "LinkedIn - لينكد إن",
+          title: "LinkedIn",
           type: "url",
           placeholder: "https://linkedin.com/company/your-company",
         }),

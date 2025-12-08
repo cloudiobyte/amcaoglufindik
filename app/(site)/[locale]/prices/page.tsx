@@ -26,7 +26,7 @@ export default async function PricesPage({
 
   return (
     <div className="min-h-screen relative">
-      {/* الخلفية - صورة أو لون افتراضي */}
+      {/* Background - image or default color / Arka plan - resim veya varsayılan renk */}
       {backgroundImage ? (
         <div 
           className="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat"
