@@ -14,7 +14,7 @@ export default async function PricesPage({
 }) {
   const { locale } = await params;
   const t = getTranslations(locale as Locale);
-  const prices = await getHazelnutPrices(locale as Locale);
+  const prices = await getHazelnutPrices();
   const siteSettings = await getSiteSettings();
 
   const backgroundImage = siteSettings?.pricesPageBackground 

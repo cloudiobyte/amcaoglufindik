@@ -13,9 +13,7 @@ export interface SanityHazelnutPrice {
 	updatedAt: string;
 }
 
-export async function getHazelnutPrices(
-	_locale: Locale = "tr",
-): Promise<SanityHazelnutPrice[]> {
+export async function getHazelnutPrices(): Promise<SanityHazelnutPrice[]> {
 	const query = `*[_type == "hazelnutPrice"] | order(date desc) {
 	  _id,
 	  "type": {
@@ -130,6 +128,12 @@ export interface SanitySiteSettings {
 			_type: string;
 		};
 	};
+	secondHandEquipmentPageBackground?: {
+		asset: {
+			_ref: string;
+			_type: string;
+		};
+	};
 	contactPageBackground?: {
 		asset: {
 			_ref: string;
@@ -160,6 +164,7 @@ export async function getSiteSettings(): Promise<SanitySiteSettings | null> {
 	  aboutPageBackground,
 	  pricesPageBackground,
 	  equipmentPageBackground,
+	  secondHandEquipmentPageBackground,
 	  contactPageBackground,
 	  socialMediaLinks
 	}`;

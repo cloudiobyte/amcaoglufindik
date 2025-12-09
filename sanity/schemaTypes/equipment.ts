@@ -12,20 +12,20 @@ export default defineType({
       options: {
         hotspot: true,
       },
-      validation: (Rule) => Rule.required(),
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "productName",
       title: "Ürün Adı / Product Name",
       type: "string",
-      validation: (Rule) => Rule.required(),
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "productDescription",
       title: "Ürün Açıklaması / Product Description",
       type: "text",
       rows: 4,
-      validation: (Rule) => Rule.required(),
+      validation: (rule) => rule.required(),
     }),
   ],
   preview: {

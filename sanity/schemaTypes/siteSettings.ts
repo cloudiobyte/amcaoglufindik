@@ -113,6 +113,17 @@ export default defineType({
       },
     }),
 
+    // Second Hand Equipment Page Background
+    defineField({
+      name: "secondHandEquipmentPageBackground",
+      title: "İkinci El Makineler Sayfası Arka Planı / Second Hand Equipment Page Background",
+      type: "image",
+      description: "İkinci el makineler sayfası arka plan resmi (opsiyonel - önerilen boyut: 1920x1080px) / Second hand equipment page background image (optional - recommended size: 1920x1080px)",
+      options: {
+        hotspot: true,
+      },
+    }),
+
     // Contact Page Background
     defineField({
       name: "contactPageBackground",
